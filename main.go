@@ -1,9 +1,8 @@
 package main
 
 import (
-	"fmt"
-
 	"github.com/escarls/go-jwt-robby/initializers"
+	"github.com/gin-gonic/gin"
 )
 
 func init() {
@@ -11,5 +10,11 @@ func init() {
 }
 
 func main() {
-	fmt.Println("Hello 2")
+	r := gin.Default()
+	r.GET("/ping", func(c *gin.Context) {
+		c.JSON(200, gin.H{
+			"message": "pong",
+		})
+	})
+	r.Run()
 }
