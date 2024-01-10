@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/escarls/go-jwt-robby/controllers"
 	"github.com/escarls/go-jwt-robby/initializers"
+	"github.com/escarls/go-jwt-robby/middleware"
 	"github.com/gin-gonic/gin"
 )
 
@@ -17,7 +18,7 @@ func main() {
 
 	r.POST("/signup", controllers.Signup)
 	r.POST("/login", controllers.Login)
-	r.GET("/validate", controllers.Validate)
+	r.GET("/validate", middleware.RequireAuth, controllers.Validate)
 
 	r.Run()
 }
